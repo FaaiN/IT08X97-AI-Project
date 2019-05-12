@@ -18,5 +18,38 @@ namespace agent
         public DateTime DateUpdate { get; set; }
 
         private ICollection<Meal> EatingHabits;
+
+        public Session() { }
+
+        public void AddAllergy(string Allergy)
+        {
+            //Allergies.Add(Allergy);
+        }
+
+        public void CalculateBMI(double height, double weight)
+        {
+            if (height > 0 && weight > 0) {
+                this.BMI = weight / (height / 100 * height / 100);
+            }
+        }
+
+        // Create a new list of eating habits and adds a new entry
+        private void CreateEatingHabit(Meal MealHabit)
+        {
+            EatingHabits = new List<Meal>();
+            AddEatingHabit(MealHabit);
+        }
+        // Adds a new meal habit (entry) to the list of eating habits
+        private void AddEatingHabit(Meal MealHabit)
+        {
+            EatingHabits.Add(MealHabit);
+        }
+        // Gets the list of eating habits
+        public string GetEatingHabit()
+        {
+            return EatingHabits.ToString();
+        }
+
+        // Generate Meal Plan
     }
 }

@@ -16,5 +16,8 @@ namespace agent
         public int Id { get; set; }
         public MealType Type { get; set; }
         public DateTime Time { get; set; }
+
+        public Meal() { }
+
     }
 }
