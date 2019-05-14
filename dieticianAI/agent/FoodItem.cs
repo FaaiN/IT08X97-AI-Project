@@ -7,11 +7,27 @@ namespace agent
     class FoodItem
     {
         public string Name { get; set; }
-        public double Protein { get; set; }
-        public double Carbs { get; set; }
-        public double Sugar { get; set; }
-        public double Fat { get; set; }
-        public double Calories { get; set; }
-        public double Salt { get; set; }
+        // Calories from fat
+        public double FAT_KCAL { get; set; }
+        // Calories
+        public double ENERC_KCAL { get; set; }
+        // Protein
+        public double PROCNT { get; set; }
+        // Cholesterol
+        public double CHOLE { get; set; }
+        // Total Carbohydrates
+        public double CHOCDF { get; set; }
+        // Sugars
+        public double SUGAR { get; set; }
+        // Dietary Fibre
+        public double FIBTG { get; set; }
+        // Total Fat
+        public double FAT { get; set; }
+        // Saturated Fat
+        public double FASAT { get; set; }
+        // Trans Fat
+        public double FATRN { get; set; }
+        // Water
+        public double WATER { get; set; }
     }
 }
