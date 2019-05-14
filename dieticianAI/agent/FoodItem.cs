@@ -29,5 +29,18 @@ namespace agent
         public double FATRN { get; set; }
         // Water
         public double WATER { get; set; }
+
+        // to calculate fitness of fooditem
+        const int CALPERGPROTEIN = 4;
+        const int CALPERGCARBS = 4;
+        const int CALPERGFAT = 9;
+        const int CALPERGSUGAR = 4;
+
+        public double CalcTotalFitness()
+        {
+            double fitness = 0;
+            fitness = (PROCNT * CALPERGPROTEIN) + (CHOCDF * CALPERGCARBS) + (FAT * CALPERGFAT) + (SUGAR * CALPERGSUGAR);
+            return fitness;
+        }
     }
 }
