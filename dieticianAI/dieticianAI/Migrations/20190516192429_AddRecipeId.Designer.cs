@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using dieticianAI;
 
 namespace dieticianAI.Migrations
 {
     [DbContext(typeof(DietDbContext))]
-    partial class DietDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190516192429_AddRecipeId")]
+    partial class AddRecipeId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,8 +41,6 @@ namespace dieticianAI.Migrations
                     b.Property<double>("FAT_KCAL");
 
                     b.Property<double>("FIBTG");
-
-                    b.Property<string>("Ingredients");
 
                     b.Property<string>("Name");
 
