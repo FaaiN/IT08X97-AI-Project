@@ -4,9 +4,14 @@ using System.Text;
 
 namespace agent
 {
-    class FoodItem
+    public class FoodItem
     {
+        public int Id { get; set; }
+        public string RecipeId { get; set; }
         public string Name { get; set; }
+        // All data of recipe
+        public string RawData { get; set; }
+        public string Ingredients { get; set; }
         // Calories from fat
         public double FAT_KCAL { get; set; }
         // Calories

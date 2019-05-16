@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dieticianAI", "dieticianAI\dieticianAI.csproj", "{371B5CE2-F38C-46EF-B6D1-D8647931B3F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dieticianAI", "dieticianAI\dieticianAI.csproj", "{371B5CE2-F38C-46EF-B6D1-D8647931B3F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "agent", "agent\agent.csproj", "{93D14B9B-2EBA-4772-9386-4D548E1269B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "agent", "agent\agent.csproj", "{93D14B9B-2EBA-4772-9386-4D548E1269B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yummly", "yummly\yummly.csproj", "{4E0B2F88-55C4-45CB-AD89-570AA1BE4E75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{93D14B9B-2EBA-4772-9386-4D548E1269B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93D14B9B-2EBA-4772-9386-4D548E1269B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93D14B9B-2EBA-4772-9386-4D548E1269B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E0B2F88-55C4-45CB-AD89-570AA1BE4E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E0B2F88-55C4-45CB-AD89-570AA1BE4E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E0B2F88-55C4-45CB-AD89-570AA1BE4E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E0B2F88-55C4-45CB-AD89-570AA1BE4E75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
