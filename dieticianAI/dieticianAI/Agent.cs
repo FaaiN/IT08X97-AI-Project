@@ -25,17 +25,23 @@ namespace dieticianAI
             Child = new Individual();
         }
 
-        public void FindBest(double caloricNeeds)
+        public void FindBest(double caloricNeeds, double bmi)
         {
             // calculate inital fitness
             MealPopulation.CalcFitness();
 
             // loop till best found
             var run = 0;
-            var maxVariations = 500;
-            while (MealPopulation.FitnessValue * 0.67 < caloricNeeds && run < maxVariations)
+            var maxVariations = 1000;
+
+            // adjust for weight status
+            var caloricAdjustment = (caloricNeeds * 0.1);
+            if (bmi >= 25) { caloricAdjustment = -(caloricNeeds * 0.2); }
+            if (bmi <= 18.5) { caloricAdjustment = (caloricNeeds * 0.2); }
+
+            while (MealPopulation.FitnessValue < (caloricNeeds + caloricAdjustment) && run < maxVariations)
             {
-                Console.WriteLine("Testing variation: " + ++run + "/500");
+                Console.WriteLine("Testing variation: " + ++run + "/1000");
                 
                 // get Best 2 fittest
                 Best = MealPopulation.GetFittest();
@@ -107,14 +113,14 @@ namespace dieticianAI
             //todo: enhance per category e.g. breakfast, snack, lunch, supper
             for (int i = 0; i < swopIndex; i++)
             {
-                // need to check for duplicate genes
+                //todo: check for duplicate genes
                 child.Genes[i] = Gene.Clone(Best.Genes[i]);
             }
 
             //todo: enhance per category e.g. breakfast, snack, lunch, supper
             for (int i = swopIndex; i < child.Genes.Length; i++)
             {
-                // need to check for duplicate genes
+                //todo: check for duplicate genes
                 child.Genes[i] = Gene.Clone(SecondBest.Genes[i]);
             }
         }

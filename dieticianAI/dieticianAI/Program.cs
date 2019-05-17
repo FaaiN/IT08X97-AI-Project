@@ -47,7 +47,7 @@ namespace dieticianAI
                 var dietAgent = new GeneticAgent(mealPop);
 
                 // find best permutation
-                dietAgent.FindBest(caloricNeeds);
+                dietAgent.FindBest(caloricNeeds, user.CalculateBMI());
 
                 Console.WriteLine("Best meal set is:");
                 Console.WriteLine(dietAgent.Best.Genes[0].Name + " ---- Calories: " + dietAgent.Best.Genes[0].Fitness);
