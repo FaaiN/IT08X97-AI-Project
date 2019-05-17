@@ -11,6 +11,7 @@ namespace agent
         public string Name { get; set; }
         // All data of recipe
         public string RawData { get; set; }
+        // All ingredients of recipe
         public string Ingredients { get; set; }
         // Calories from fat
         public double FAT_KCAL { get; set; }

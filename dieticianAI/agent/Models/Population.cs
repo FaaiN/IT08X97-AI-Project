@@ -8,8 +8,6 @@ namespace agent
     {
         public int PopulationSize { get; set; }
         public ICollection<Individual> Individuals { get; set; } // makes up population
-        public int IndexFirst { get; set; } // index of fittest individual
-        public int IndexSecond { get; set; } // index of second fittest individual
         public double FitnessValue { get; set; } // value of fitness for Fittest Individual
 
         public Population()
@@ -34,36 +32,15 @@ namespace agent
         // Finds the fittest individual
         public Individual GetFittest()
         {
-            double first = Individuals.First().Fitness;
-            IndexFirst = 0;
-            for (int i = 0; i < Individuals.Count; i++)
-            {
-                if (first <= Individuals.ElementAt(i).Fitness)
-                {
-                    first = Individuals.ElementAt(i).Fitness;
-                    IndexFirst = i;
-                }
-            }
-            FitnessValue = Individuals.ElementAt(IndexFirst).Fitness;
-            return Individuals.ElementAt(IndexFirst);
+           var fittest = Individuals.OrderByDescending(i => i.Fitness).First();
+            FitnessValue = fittest.Fitness;
+            return fittest;
         }
 
         public Individual GetSecondFittest()
         {
-            IndexSecond = 0;
-            for (int i = 0; i < Individuals.Count; i++)
-            {
-                if (Individuals.ElementAt(i).Fitness > Individuals.ElementAt(IndexFirst).Fitness)
-                {
-                    IndexSecond = IndexFirst;
-                    IndexFirst = i;
-                }
-                else if (Individuals.ElementAt(i).Fitness > Individuals.ElementAt(IndexSecond).Fitness)
-                {
-                    IndexSecond = i;
-                }
-            }
-            return Individuals.ElementAt(IndexSecond);
+            var nextFittest = Individuals.OrderByDescending(i => i.Fitness).Skip(1).First();
+            return nextFittest;
         }
 
         //public Individual underweightFittest(double CaloricNeeds)
@@ -99,7 +76,7 @@ namespace agent
         //        }
         //    }
         //    FitnessValue = Individuals.ElementAt(IndexFittest).Fitness;
-        //    if (FitnessValue > CaloricNeeds)
+        //    if (FitnessValue < CaloricNeeds)
         //    {
         //        // gets actual individual with best fitness
         //        return Individuals.ElementAt(IndexFittest);

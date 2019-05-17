@@ -8,5 +8,14 @@ namespace agent.Models
     {
         public string Name { get; set; }
         public double Fitness { get; set; }
+
+        public static Gene Clone(Gene gene)
+        {
+            return new Gene
+            {
+                Name = gene.Name,
+                Fitness = gene.Fitness
+            };
+        }
     }
 }
