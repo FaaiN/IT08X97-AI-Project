@@ -1,54 +1,111 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace agent
 {
-    class Population
+    public class Population
     {
         public int PopulationSize { get; set; }
-        public Individual[] Individuals { get; set; } // makes up population
-        public int IndexFittest { get; set; } // index of fittest individual
+        public ICollection<Individual> Individuals { get; set; } // makes up population
+        public int IndexFirst { get; set; } // index of fittest individual
+        public int IndexSecond { get; set; } // index of second fittest individual
         public double FitnessValue { get; set; } // value of fitness for Fittest Individual
 
-        public void initialise(int Size)
+        public Population()
         {
-            // create array of individuals of length Size
-            Individuals = new Individual[Size];
-            for (int i = 0; i < Individuals.Length; i++)
-            {
-                // initialise each Individual element 
-                Individuals[i] = new Individual();
-            }
+            Individuals = Enumerable.Empty<Individual>().ToList(); ;
+        }
+
+        public void AddIndividual(Individual individual)
+        {
+            Individuals.Add(individual);           
         }
 
         public void CalcFitness()
         {
             // Calculate fitness of each individual
-            for (int i = 0; i < Individuals.Length; i++)
+            foreach(var individual in Individuals)
             {
-                Individuals[i].CalcFitness();
+                individual.CalcFitness();
             }
-            // getFittest
-            getFittest();
         }
 
         // Finds the fittest individual
-        private Individual getFittest()
+        public Individual GetFittest()
         {
-            double max = 1;
-            IndexFittest = 0;
-            for (int i = 0; i < Individuals.Length; i++)
+            double first = Individuals.First().Fitness;
+            IndexFirst = 0;
+            for (int i = 0; i < Individuals.Count; i++)
             {
-                if (max <= Individuals[i].Fitness)
+                if (first <= Individuals.ElementAt(i).Fitness)
                 {
-                    max = Individuals[i].Fitness;
-                    IndexFittest = i;
+                    first = Individuals.ElementAt(i).Fitness;
+                    IndexFirst = i;
                 }
             }
-            // gets actual individual with bext fitness
-            FitnessValue = Individuals[IndexFittest].Fitness;
-            return Individuals[IndexFittest];
+            FitnessValue = Individuals.ElementAt(IndexFirst).Fitness;
+            return Individuals.ElementAt(IndexFirst);
         }
+
+        public Individual GetSecondFittest()
+        {
+            IndexSecond = 0;
+            for (int i = 0; i < Individuals.Count; i++)
+            {
+                if (Individuals.ElementAt(i).Fitness > Individuals.ElementAt(IndexFirst).Fitness)
+                {
+                    IndexSecond = IndexFirst;
+                    IndexFirst = i;
+                }
+                else if (Individuals.ElementAt(i).Fitness > Individuals.ElementAt(IndexSecond).Fitness)
+                {
+                    IndexSecond = i;
+                }
+            }
+            return Individuals.ElementAt(IndexSecond);
+        }
+
+        //public Individual underweightFittest(double CaloricNeeds)
+        //{
+        //    double first = Individuals.First().Fitness;
+        //    IndexFirst = 0;
+        //    for (int i = 0; i < Individuals.Count; i++)
+        //    {
+        //        if (first <= Individuals.ElementAt(i).Fitness)
+        //        {
+        //            first = Individuals.ElementAt(i).Fitness;
+        //            IndexFirst = i;
+        //        }
+        //    }
+        //    FitnessValue = Individuals.ElementAt(IndexFirst).Fitness;
+        //    if (FitnessValue > CaloricNeeds)
+        //    {
+        //        // gets actual individual with best fitness
+        //        return Individuals.ElementAt(IndexFirst);
+        //    }
+        //    return null;
+        //}
+        //public Individual overweightFittest(double CaloricNeeds)
+        //{
+        //    double max = Individuals.First().Fitness;
+        //    IndexFittest = 0;
+        //    for (int i = 0; i < Individuals.Count; i++)
+        //    {
+        //        if (max <= Individuals.ElementAt(i).Fitness)
+        //        {
+        //            max = Individuals.ElementAt(i).Fitness;
+        //            IndexFittest = i;
+        //        }
+        //    }
+        //    FitnessValue = Individuals.ElementAt(IndexFittest).Fitness;
+        //    if (FitnessValue > CaloricNeeds)
+        //    {
+        //        // gets actual individual with best fitness
+        //        return Individuals.ElementAt(IndexFittest);
+        //    }
+        //    return null;
+        //}
+
     }
 }

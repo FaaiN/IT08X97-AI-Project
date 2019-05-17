@@ -1,21 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using agent.Models;
 
 namespace agent
 {
-    class Individual
+    public class Individual
     {
-        FoodItem item;
         public double Fitness { get; set; }
-        public double[] Genes { get; set; } // is this even necessary
-        public int GeneLength { get; set; }
+        public Gene[] Genes { get; set; }
+        static int GeneLength { get; set; } = 4;
 
         public Individual()
         {
-            FoodItem item = new FoodItem();
-            // initialise food item
-
+            Genes = new Gene[GeneLength];
+            for(var i = 0; i < GeneLength; i++)
+            {
+                Genes[i] = new Gene();
+            }
         }
 
         // fitness based on fitness for each gene in individual
@@ -24,7 +23,12 @@ namespace agent
         // fitness measured in calories
         public double CalcFitness()
         {
-            return item.CalcTotalFitness();
+            Fitness = 0.0;
+            for (var i = 0; i < GeneLength-1; i++)
+            {
+                Fitness += Genes[i].Fitness;
+            }
+            return Fitness;
         }
 
        

@@ -8,21 +8,12 @@ namespace agent
     {
         // Current State: BMI
         // Goal: Weight Goal
-        // Constraints: Allergies, User- Satisfaction, Meal-Goal Success 
-        // Possible Constraint: BMI (Should maintain health)
         
 
         // Genetic Algorithm?
         //      population: Meals that fit constraints/partial constraints?
         //      Fitness function: Some way of assessing relevance (fitness) of meal
-        //                  - does meal align with recommended meal proportiions/composition for that bmi and purpose?
-
-        // Information Gathering Agent(percept) returns (action)
-        // integrate percept into decision network D
-        // j - value that maximizes VPI(Ej)/Cost(Ej)
-        // if VPI > Cost
-        //      return REQUEST(Ej)
-        // else return best action from D
+        //                  - does meal align with recommended meal proportiions/composition for that bmi and purpose
 
         public string FitnessFunction()
         {

@@ -6,43 +6,49 @@ namespace agent
     public class User
     {
         public string Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Name { get; set; }
-        public DateTime DOB { get; set; }
         public string Gender { get; set; }
-        public double Budget { get; set; }
-        public DateTime DateCreated { get; set; }
-
-        private ICollection<Session> Visits;
-
+        public double Height { get; set; }
+        public double Weight { get; set; }
+        public double BMI { get; set; }
+        public double GoalWeight { get; set; }
 
         public User() { }
 
-        public User(string Username, string Password)
+        public User(string gender, double height, double weight)
         {
-            this.Username = Username;
-            this.Password = Password;
-            DateCreated = DateTime.UtcNow;
-            Visits = new List<Session>();
-        }
-        
-        public void AddUserDetails(string Name, string Gender, DateTime DOB, double Budget)
-        {
-            this.Name = Name;
-            this.Gender = Gender;
-            this.DOB = DOB;
-            this.Budget = Budget;
+            Gender = gender;
+            this.Height = height;
+            this.Weight = weight;
         }
 
-        private void NewVisit(Session Visit)
+        // BMI Calculation to find out if under/nomral/overweght
+        public double CalculateBMI()
         {
-            Visits.Add(Visit); 
+            if (Height > 0 && Weight > 0)
+            {
+                BMI = Weight / (Height/100 * Height/100);
+            }
+            return BMI;
         }
 
-        private void NewVisit()
+        // BMI result
+        public string BmiResult()
         {
-            Visits.Add(null);
+            if(BMI < 18.5) { return "You are underweight!"; }
+            else if (BMI > 25) { return "You are overweight!"; }
+            else { return "Your weight is normal"; }
+        }
+
+        // Calculation to find out how calorie needs in meal
+        public double CaloricNeeds(string Gender)
+        {
+            double gMultiplier = 1.0; // gender == male
+            double fMultiplier = 1.0; // bmi = normal weight
+
+            if (Gender.Equals("female", StringComparison.OrdinalIgnoreCase)) { gMultiplier = 0.9; }
+            if (BMI < 18.5) { fMultiplier = 1.2; } else if (BMI > 25.0) { fMultiplier = 0.8; }
+      
+            return Weight * gMultiplier * 24 * fMultiplier * 3;
         }
     }
 }
